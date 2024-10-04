@@ -1,0 +1,8 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "My Goodreads",
+  "author": "Richard Couzens",
+  "url": "https://www.goodreads.com/review/list/106036393?ref=nav_mybooks"
+}
