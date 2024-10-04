@@ -3,6 +3,7 @@ const { Blog } = require('../models');
 
 // Middleware to find blog by ID
 const blogFinder = async (req, _res, next) => {
+    console.log('params!!!', req.params.id)
   try {
     req.blog = await Blog.findByPk(req.params.id);
     if (!req.blog) {
@@ -16,7 +17,6 @@ const blogFinder = async (req, _res, next) => {
   }
 };
 
-router.use(blogFinder);
 
 // GET all blogs
 router.get('/', async (_req, res, next) => {
@@ -39,6 +39,7 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
 
 // GET blog by ID
 router.get('/:id', blogFinder, async (req, res, next) => {
