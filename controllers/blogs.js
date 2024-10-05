@@ -55,7 +55,7 @@ router.delete('/:id', blogFinder, async (req, res, next) => {
   try {
     if (req.blog) {
       await Blog.destroy({ where: { id: req.params.id } });
-      return res.status(204).end(); // Ensure .end() to close response
+      return res.status(204).end();
     } else {
       return res.status(404).json({ error: 'Blog not found' });
     }

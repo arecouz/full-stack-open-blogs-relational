@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/users/notausername
+Content-Type: application/json
+
+{
+    "newUsername": "username"
+}
+
