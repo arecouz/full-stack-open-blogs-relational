@@ -6,14 +6,14 @@ const jwt = require('jsonwebtoken');
 
 // Middleware to find blog by ID
 const blogFinder = async (req, _res, next) => {
-  console.log('params!!!', req.params.id);
   try {
     req.blog = await Blog.findByPk(req.params.id);
     if (!req.blog) {
       const error = new Error('Blog not found');
       error.status = 404;
-      return next(error);
+      next(error);
     }
+    next();
   } catch (error) {
     next(error);
   }
@@ -53,7 +53,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', tokenExtractor, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.decodedToken.id);
-    const blog = await Blog.create({...req.body, userId: user.dataValues.id});
+    const blog = await Blog.create({ ...req.body, userId: user.dataValues.id });
     if (blog) {
       return res.json(blog);
     }
@@ -72,14 +72,23 @@ router.get('/:id', blogFinder, async (req, res, next) => {
 });
 
 // DELETE blog by ID
-router.delete('/:id', blogFinder, async (req, res, next) => {
+router.delete('/:id', blogFinder, tokenExtractor, async (req, res, next) => {
   try {
-    if (req.blog) {
-      await Blog.destroy({ where: { id: req.params.id } });
-      return res.status(204).end();
-    } else {
-      return res.status(404).json({ error: 'Blog not found' });
+    if (!req.decodedToken) {
+      console.error('no user');
+      return res.status(401);
     }
+    if (!req.blog) {
+      console.error('blog not found');
+      return res.status(404).json({ error: 'Blog not found' }).end();
+    }
+    const user = await User.findByPk(req.decodedToken.id);
+    if (!(user.dataValues.id === req.blog.dataValues.userId)) {
+      console.error('not your blog, cant delete');
+      return res.status(401).end();
+    }
+    await req.blog.destroy();
+    return res.status(204).end();
   } catch (error) {
     next(error);
   }
