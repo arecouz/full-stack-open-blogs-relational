@@ -4,6 +4,7 @@ const { User } = require('../models');
 const { SECRET } = require('../utils/configs');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
+const { sequelize } = require('../utils/db');
 
 // Middleware to find blog by ID
 const blogFinder = async (req, _res, next) => {
@@ -40,7 +41,7 @@ const tokenExtractor = async (req, res, next) => {
   }
 };
 
-// GET all blogs (WHERE)
+// GET all blogs - with search, ordered by likes(desc)
 router.get('/', async (req, res, next) => {
   try {
     let where = {};
@@ -57,6 +58,7 @@ router.get('/', async (req, res, next) => {
       };
     }
     const blogs = await Blog.findAll({
+      order: [['likes', 'DESC']],
       where,
     });
     res.json(blogs);
