@@ -1,1 +1,1 @@
-PUT http://localhost:3001/api/blogs/99
+PUT http://localhost:3001/api/blogs/7

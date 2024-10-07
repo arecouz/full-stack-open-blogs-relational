@@ -4,7 +4,7 @@ const { User } = require('../models');
 const { SECRET } = require('../utils/configs');
 const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
-const { sequelize } = require('../utils/db');
+
 
 // Middleware to find blog by ID
 const blogFinder = async (req, _res, next) => {
