@@ -24,6 +24,14 @@ Blog.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    year: {
+      type: DataTypes.INTEGER,
+      validate: {
+        len: [4, 4],
+        min: 0,
+        max: new Date().getFullYear(),
+      },
+    },
   },
   {
     sequelize,
