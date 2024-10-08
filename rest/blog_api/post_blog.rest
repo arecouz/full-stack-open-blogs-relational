@@ -1,9 +1,9 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIyIiwiaWQiOjIsImlhdCI6MTcyODIyNjcyM30.r1CnrEbxs2FXDlu6lvgloGp_81NaogkTMlPgiBmWKP8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6MSwiaWF0IjoxNzI4MzkzOTMxfQ.jCRxAuZpJTh4S4OJxMRSeRub1tbjuJwkMkGLG5XM5LM
 
 {
     "author": "Richard Couzens",
-    "url": "https://BichardBouzensFanSite.com",
-    "title": "Bichard Bouzens Fan Site"
+    "url": "https://google.com",
+    "title": "Great Site"
 }

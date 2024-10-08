@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "migration:down": "node utils/rollback.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.7",
     "pg": "^8.13.0",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "umzug": "^3.8.2"
   }
 }

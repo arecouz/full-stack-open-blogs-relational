@@ -28,9 +28,9 @@ Blog.init(
   {
     sequelize,
     underscored: true, // table names are derived from model names as plural snake case versions
-    timestamps: false,
+    timestamps: true,
     modelName: 'blog',
   }
 );
 
-module.exports = Blog
+module.exports = Blog;
