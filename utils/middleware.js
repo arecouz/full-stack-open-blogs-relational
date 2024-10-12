@@ -1,5 +1,6 @@
 const { SECRET } = require('../utils/configs');
 const jwt = require('jsonwebtoken');
+const { Session } = require('../models');
 
 const logger = (req, _res, next) => {
   console.log(`request: ${req.method} ${req.originalUrl}`);
@@ -7,17 +8,26 @@ const logger = (req, _res, next) => {
 };
 
 const tokenExtractor = async (req, res, next) => {
-  console.log('extracting token');
+  // add middleware here for checking if there in the session db
   try {
     const auth = req.get('authorization');
-    console.log(auth);
     if (!(auth && auth.startsWith('Bearer'))) {
       console.error('not authorized');
-      console.log(auth);
       return res.status(401).end();
     }
     req.decodedToken = jwt.verify(auth.split(' ')[1], SECRET);
-    console.log(req.decodedToken);
+
+    const session = await Session.findOne({
+      where: { userId: req.decodedToken.id },
+    });
+    console.log('!!!!!', session);
+
+    if (!session) {
+      return res.status(401).send({ message: 'Invalid token' });
+    }
+
+    req.session = session;
+
     next();
   } catch (error) {
     console.error(error);

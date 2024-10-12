@@ -1,10 +1,10 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIyIiwiaWQiOjIsImlhdCI6MTcyODY0NjMxN30.Wmn2H4N27baNYk_LO8Zv5-xbmvbohhxfPpYsCCYaG5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6MSwiaWF0IjoxNzI4NzMxMjIyfQ.EYQQv0Ytmhz7Hmz0PPzZaNXY70w-2wpIEbnvkR7L--o
 
 {
-    "author": "Richard Couzens",
-    "url": "https://bing.com",
+    "author": "Billy Bob",
+    "url": "https://bingbongbang.com",
     "title": "Great Site",
     "year": 2024
 }
